@@ -1,0 +1,26 @@
+# compressed files
+*.tar
+*.gz
+*.zip
+
+# model files
+*.h5
+*.pb
+*.pd
+*.pth
+*.pt
+*.ckpt
+*.pbtxt
+*.onnx
+*.xml
+*.bin
+
+# tensorflow-models
+models
+
+# pretrained model
+mask_rcnn_inception_v2_coco_2018_01_28
+
+coco
+training
+checkpoints
