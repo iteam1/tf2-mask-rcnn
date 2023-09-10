@@ -17,8 +17,6 @@
 
 - check gpu and container connection `nvidia-smi`
 
-- update pip package `pip install pip==21.3.1`
-
 - install protobuf compiler: `apt update && apt install protobuf-compiler`
 
 - go to directory `research` directory: `cd models/research`

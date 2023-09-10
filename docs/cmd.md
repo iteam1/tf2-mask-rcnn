@@ -37,3 +37,5 @@
         --trained_checkpoint_dir training \
         --output_directory inference_graph \
         --pipeline_config_path dataset/mask_rcnn_inception_resnet_v2_1024x1024_coco17_gpu-8.config
+
+- test unseen images `python scripts/predict_tf2.py`
