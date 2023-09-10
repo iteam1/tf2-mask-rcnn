@@ -1,2 +1,2 @@
 # tf2-mask-rcnn
-train mark-rcnn tensorflow v1
+train mark-rcnn tensorflow v2
