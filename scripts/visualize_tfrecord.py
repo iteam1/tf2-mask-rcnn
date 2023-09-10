@@ -3,7 +3,7 @@ python3 scripts/visualize_tfrecord.py dataset/train.record dataset/labelmap.pbtx
 '''
 import matplotlib.pyplot as plt
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import sys
 import os
 import IPython.display
@@ -16,7 +16,8 @@ from object_detection.data_decoders.tf_example_decoder import TfExampleDecoder a
 from google.protobuf import text_format 
 import itertools
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "1" 
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+tf.disable_v2_behavior()
 
 tf_record_path = sys.argv[1]
 label_map_path = sys.argv[2]
@@ -24,7 +25,7 @@ label_map_path = sys.argv[2]
 def visualise(tfrecords_filename, label_map=None):
     if label_map is not None:
         label_map_proto = pb.StringIntLabelMap()
-        with tf.gfile.GFile(label_map,'r') as f:
+        with tf.io.gfile.GFile(label_map,'r') as f:
             text_format.Merge(f.read(), label_map_proto)
             class_dict = {}
             for entry in label_map_proto.item:

@@ -8,12 +8,12 @@
 
 - convert the labelme labels training set into COCO format:
 
-        python3 scripts/labelme2coco.py dataset/train \
+        python scripts/labelme2coco.py dataset/train \
         --output dataset/train.json
 
 - convert the labelme labels training set into COCO format:
 
-        python3 scripts/labelme2coco.py dataset/val \
+        python scripts/labelme2coco.py dataset/val \
         --output dataset/val.json
 
 *Note: Inside docker
@@ -29,13 +29,11 @@
 
 - visualize tfrecord `python3 scripts/visualize_tfrecord.py dataset/train.record dataset/labelmap.pbtxt`
 
-- export `PYTHONPATH`: `export PYTHONPATH="/mrcnn/models/research" && export PYTHONPATH="/mrcnn/models/research/slim"`
-
-- train model: `python models/research/object_detection/model_main.py --logtostderr --model_dir=training/ --pipeline_config_path=dataset/mask_rcnn_inception_v2_coco.config`
+- train model: `python models/research/object_detection/model_main_tf2.py --pipeline_config_path=dataset/mask_rcnn_inception_resnet_v2_1024x1024_coco17_gpu-8.config --model_dir=training --alsologtostderr`
 
 - export model
 
-        python models/research/object_detection/export_inference_graph.py \
-        --input_type image_tensor \
-        --pipeline_config_path mask_rcnn_inception_v2_coco.config \
-        --trained_checkpoint_prefix training/model.ckpt-xxx --output_directory inference_graph
+        python models/research/object_detection/exporter_main_v2.py \
+        --trained_checkpoint_dir training \
+        --output_directory inference_graph \
+        --pipeline_config_path dataset/mask_rcnn_inception_resnet_v2_1024x1024_coco17_gpu-8.config

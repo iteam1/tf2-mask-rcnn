@@ -19,8 +19,11 @@
 models
 
 # pretrained model
-mask_rcnn_inception_v2_coco_2018_01_28
+mask_rcnn_inception_resnet_v2_1024x1024_coco17_gpu-8
 
+src
+dst
 coco
 training
 checkpoints
+inference_graph

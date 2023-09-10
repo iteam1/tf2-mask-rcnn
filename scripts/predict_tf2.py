@@ -5,14 +5,11 @@ import scipy.misc
 import numpy as np
 import six
 import time
-
 from six import BytesIO
-
 import matplotlib
 import matplotlib.pyplot as plt
-from PIL import Image, ImageDraw, ImageFont
-
 import tensorflow as tf
+from PIL import Image, ImageDraw, ImageFont
 from object_detection.utils import visualization_utils as viz_utils
 
 def load_image_into_numpy_array(path):
@@ -50,13 +47,16 @@ end_time = time.time()
 elapsed_time = end_time - start_time
 print('Elapsed time: ' + str(elapsed_time) + 's')
 
-import time
 
-image_dir = 'dst'
+source_path = 'dataset/test'
+images = os.listdir(source_path)
+destination_path = 'dst'
+if not os.path.exists(destination_path):
+  os.mkdir(destination_path)
 
 elapsed = []
-for i in range(2):
-  image_path = os.path.join(image_dir, 'image' + str(i + 1) + '.jpg')
+for image in images:
+  image_path = os.path.join(source_path, image)
   image_np = load_image_into_numpy_array(image_path)
   input_tensor = np.expand_dims(image_np, 0)
   start_time = time.time()
@@ -80,7 +80,7 @@ for i in range(2):
 #   plt.subplot(2, 1, i+1)
 #   plt.imshow(image_np_with_detections)
   
-  cv2.imwrite(f'{i}.jpg',image_np_with_detections)
+  cv2.imwrite(os.path.join(destination_path,image),image_np_with_detections)
 
 mean_elapsed = sum(elapsed) / float(len(elapsed))
 print('Elapsed time: ' + str(mean_elapsed) + ' second per image')
