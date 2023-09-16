@@ -29,7 +29,7 @@
 
 - visualize tfrecord `python scripts/visualize_tfrecord.py dataset/train.record dataset/labelmap.pbtxt`
 
-- train model: `python models/research/object_detection/model_main_tf2.py --pipeline_config_path=dataset/mask_rcnn_inception_resnet_v2_1024x1024_coco17_gpu-8.config --model_dir=training --alsologtostderr`
+- train model: `CUDA_VISIBLE_DEVICES=0 python models/research/object_detection/model_main_tf2.py --pipeline_config_path=dataset/mask_rcnn_inception_resnet_v2_1024x1024_coco17_gpu-8.config --model_dir=training --alsologtostderr`
 
 - export model
 
